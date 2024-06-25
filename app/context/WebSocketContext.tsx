@@ -21,7 +21,11 @@ export const WebSocketContextProvider: ReactFC = ({ children }) => {
   let activeUserId: string;
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3001");
+    const url =
+      process.env.NODE_ENV == "development"
+        ? "ws://localhost:3001"
+        : "wss://websocket-backend.anbuksv.com";
+    const ws = new WebSocket(url);
 
     ws.onopen = () => {
       setMessage("WebSocket connection established");
@@ -29,7 +33,7 @@ export const WebSocketContextProvider: ReactFC = ({ children }) => {
 
     ws.onmessage = function (event) {
       const { type, message, userId } = JSON.parse(event.data);
-      if (!activeUserId) {
+      if (activeUserId != userId) {
         activeUserId = userId;
         return setUserId(userId);
       }

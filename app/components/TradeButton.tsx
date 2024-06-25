@@ -14,7 +14,7 @@ export default function TradeButton() {
           socket?.send(userId || "");
           setTimeout(() => {
             setDisabled(false);
-          }, 1000 * 20);
+          }, 1000 * 4);
         }}
         type="button"
         className="w-full h-12 justify-center uppercase text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
