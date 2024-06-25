@@ -23,7 +23,7 @@ export const WebSocketContextProvider: ReactFC = ({ children }) => {
   useEffect(() => {
     const url =
       process.env.NODE_ENV == "development"
-        ? "ws://localhost:9003"
+        ? "ws://localhost:3001"
         : "wss://ws.be.anbuksv.com";
     const ws = new WebSocket(url);
 
@@ -33,7 +33,7 @@ export const WebSocketContextProvider: ReactFC = ({ children }) => {
 
     ws.onmessage = function (event) {
       const { type, message, userId } = JSON.parse(event.data);
-      if (!activeUserId) {
+      if (activeUserId != userId) {
         activeUserId = userId;
         return setUserId(userId);
       }

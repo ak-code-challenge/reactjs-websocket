@@ -6,8 +6,8 @@ export default function TradeDetails() {
   return (
     <div className="flex bg-gray-200 flex-col p-8 gap-4 w-full">
       <div className="font-bold"> Your Trade Details</div>
-      <div className="overflow-x-auto">
-        <pre>{message}</pre>
+      <div>
+        <pre className="text-wrap">{message}</pre>
       </div>
       <div className="flex-1" />
       <TradeButton />
