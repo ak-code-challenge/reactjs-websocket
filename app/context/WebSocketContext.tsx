@@ -21,7 +21,11 @@ export const WebSocketContextProvider: ReactFC = ({ children }) => {
   let activeUserId: string;
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3001");
+    const url =
+      process.env.NODE_ENV == "development"
+        ? "ws://localhost:9003"
+        : "wss://ws.be.anbuksv.com";
+    const ws = new WebSocket(url);
 
     ws.onopen = () => {
       setMessage("WebSocket connection established");
